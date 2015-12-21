@@ -102,7 +102,7 @@ class GameOfLife(object):
         res['center'] = self._data[y][x]
         return res
 
-    def run_once(self):
+    def step(self):
         rdata = []
         for y, row in enumerate(self._data):
             nrow = []
@@ -132,7 +132,7 @@ def main():
     gol = GameOfLife()
     gol.randomize(WIDTH, HEIGHT)
     while True:
-        gol.run_once()
+        gol.step()
         print gol
         time.sleep(SLEEP)
     
