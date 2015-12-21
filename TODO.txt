@@ -1,0 +1,9 @@
+
+Stuff to add, just for the shit of it:
+
+1. publish object into webservice
+2. hook to pysiphae framework, and visualize in JS
+3. log all intermediary states, see what analysis we can do
+4. log all execution cycle
+5. detect known organisms
+6. create statistics? 
