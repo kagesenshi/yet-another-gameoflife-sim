@@ -5,11 +5,16 @@
         yum: name=git,python-devel,python,python-virtualenv,python-setuptools
       - name: install deps run 2
         yum: name=cyrus-sasl-devel,openldap-devel,libxml2-devel,libxslt-devel
+      - name: create user
+        user: name=mvalleychallenge shell=/bin/bash
       - name: checkout app
         git: repo=https://github.com/kagesenshi/yet-another-gameoflife-sim.git
              dest=/opt/app
+      - name: chown
+        command: chown -R mvalleychallenge:mvalleychallenge /opt/app
+
       - name: build app
-        command: ./build.sh
+        command: sudo -u mvalleychallenge ./build.sh
         args:
             chdir: /opt/app
             creates: /opt/app/bin/pserve
