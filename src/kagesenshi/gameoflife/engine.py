@@ -6,12 +6,15 @@
 import random, pprint
 import sys, time, os
 from copy import copy
+from zope.interface import implements
+from .interfaces import IGameOfLifeEngine
 
 WIDTH=100
 HEIGHT=50
 SLEEP=0.2
 
 class GameOfLife(object):
+    implements(IGameOfLifeEngine)
 
     def __init__(self, initial_state=None):
         self._data = initial_state or []
