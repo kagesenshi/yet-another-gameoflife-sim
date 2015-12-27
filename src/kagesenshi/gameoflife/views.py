@@ -18,14 +18,14 @@ class Views(BaseViews):
 
     @view_config(route_name='kagesenshi.gameoflife', renderer='templates/default.pt')
     def default_view(self):
-        return { 'page_header': 'kagesenshi.gameoflife Dashboard' }
+        return { 'sessionid': 'default' }
 
     @view_config(route_name='golsession', renderer='json')
     def game_of_life_json(self):
         sessionid = self.request.matchdict['sessionid']
         session = self.request.db
         state = (session.query(State)
-                        .filter(State.session==int(sessionid))
+                        .filter(State.session==sessionid)
                         .order_by(State.ts.desc()).first())
         if not state:
             gol = GameOfLife()

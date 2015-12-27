@@ -10,7 +10,7 @@ import json
 class State(Base):
     __tablename__ = 'state'
     ts = Column(DateTime, primary_key=True)
-    session = Column(Integer)
+    session = Column(Text)
     encoded_value = Column(Text)
     living_cells = Column(Integer)
     dead_cells = Column(Integer)

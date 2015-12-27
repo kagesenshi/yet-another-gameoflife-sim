@@ -2,9 +2,12 @@
 var chart = dc.scatterPlot("#gol-grid")
 var liveCountDisplay = dc.numberDisplay('#live-count');
 var deadCountDisplay = dc.numberDisplay('#dead-count');
-var jsonfile = '/golsession/1.json';
 
-d3.json(jsonfile, function (data) {
+function jsonurl () {
+    return '/golsession/' + $('#sessionid').val() + '.json';
+};
+
+d3.json(jsonurl(), function (data) {
     var ndx = crossfilter(data);
     var dim = ndx.dimension(function (d) { return [d.x,d.y] });
     var group = dim.group().reduceSum(function (d) {
@@ -70,7 +73,7 @@ d3.json(jsonfile, function (data) {
     dc.renderAll();
 
     function step() {
-        d3.json(jsonfile + '?step=1', function (data) {
+        d3.json(jsonurl() + '?step=1', function (data) {
             ndx.remove();
             ndx.add(data);
             dc.redrawAll();
@@ -82,7 +85,7 @@ d3.json(jsonfile, function (data) {
     var tracker = null;
     $('#run-button').click(function () {
         if (tracker == null) {
-            tracker = setInterval(step, 1000);
+            tracker = setInterval(step, 1500);
         };
     });
 
