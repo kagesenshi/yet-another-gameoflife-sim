@@ -1,9 +1,32 @@
 // Put your JS here
-var svg = dimple.newSvg("#gol-grid", 1024, 1024);
+var chart = dc.heatMap("#gol-grid")
 d3.json("/golsession/1.json", function (data) {
-  var myChart = new dimple.chart(svg, data);
-  myChart.addCategoryAxis("x", "x");
-  myChart.addCategoryAxis("y", "y");
-  myChart.addSeries("val", dimple.plot.bar);
-  myChart.draw();
+    var ndx = crossfilter(data);
+    var dim = ndx.dimension(function (d) { return [d.x,d.y] });
+    var group = dim.group().reduceSum(function (d) {
+        return d.val;   
+    });
+
+    chart.options({
+        width: 1024,
+        height:1024,
+        dimension: dim,
+        group: group,
+        keyAccessor: function (d) {
+            return d.key[0]
+        },
+        valueAccessor: function (d) {
+            return d.key[1]
+        },
+        colorAccessor: function (d) {
+            return d.value
+        },
+        colors: ['#FFF','#000'],
+        boxOnClick: function (d) {}
+    });
+
+    chart.xBorderRadius(0);
+    chart.yBorderRadius(0);
+
+    chart.render();
 });

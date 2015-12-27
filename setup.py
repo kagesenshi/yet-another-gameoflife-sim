@@ -16,7 +16,7 @@ long_description = (
 
 requires = [
     'pysiphae[framework]',
-    'mysql-python'
+    'mysql-python',
 ]
 
 setup(name='kagesenshi.gameoflife',
