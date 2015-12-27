@@ -14,7 +14,7 @@
         name="kagesenshi.gameoflife"/>
 
     <utility
-        factory=".homeresolver.HomeViewResolver"
+        factory=".navigation.HomeViewResolver"
         provides="pysiphae.interfaces.IHomeViewResolver"
         name="kagesenshi.gameoflife"/>
 
