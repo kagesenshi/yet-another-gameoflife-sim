@@ -9,6 +9,10 @@ class NavigationProvider(object):
             'href': '/gameoflife',
             'label': 'Game Of Life',
             'order': 1
+        }, {
+            'href': '/shorturl',
+            'label': 'URL Shortener',
+            'order': 2
         }]
 
 class HomeViewResolver(object):

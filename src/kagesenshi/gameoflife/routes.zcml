@@ -10,4 +10,12 @@
         name="golsession"
         pattern="golsession/{sessionid}.json"/>
 
+    <route 
+        name="shorturl"
+        pattern="/shorturl"/>
+
+    <route 
+        name="resolve_url"
+        pattern="/s/{short_id}"/>
+
 </configure>
