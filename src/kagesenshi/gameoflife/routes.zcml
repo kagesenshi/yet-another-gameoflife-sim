@@ -6,4 +6,8 @@
         name="kagesenshi.gameoflife"
         pattern="/kagesenshi.gameoflife"/>
 
+    <route 
+        name="golsession"
+        pattern="golsession/{sessionid}.json"/>
+
 </configure>

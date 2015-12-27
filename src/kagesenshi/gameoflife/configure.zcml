@@ -13,5 +13,18 @@
         provides="pysiphae.interfaces.INavigationProvider"
         name="kagesenshi.gameoflife"/>
 
+    <utility
+        factory=".homeresolver.HomeViewResolver"
+        provides="pysiphae.interfaces.IHomeViewResolver"
+        name="kagesenshi.gameoflife"/>
+
+    <utility
+        factory=".config.SQLAlchemyConfigurator"
+        provides="pysiphae.interfaces.IConfigurator"
+        name="kagesenshi.gameoflife:sqlalchemyconfigure"/>
+
+    <utility
+        factory=".engine.GameOfLife"
+        provides=".interfaces.IGameOfLifeEngine"/>
 
 </configure>

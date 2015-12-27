@@ -1,27 +1,18 @@
 <metal:master use-macro="view.main_template">
     <metal:style fill-slot="style_slot">
-        .sample-red { color : red }
     </metal:style>
     <metal:header fill-slot="header">
-        <h1 class="page-header">Header</h1>
+        <h1 class="page-header">Game Of Life</h1>
     </metal:header>
     <metal:content fill-slot="content">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <span class="sample-red">Panel 1</span>
+                        State
                     </div>
                     <div class="panel-body">
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Panel 2
-                    </div>
-                    <div class="panel-body">
+                        <div id="gol-grid"></div>
                     </div>
                 </div>
             </div>

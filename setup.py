@@ -15,7 +15,8 @@ long_description = (
     + '\n')
 
 requires = [
-    'pysiphae[framework]'
+    'pysiphae[framework]',
+    'mysql-python'
 ]
 
 setup(name='kagesenshi.gameoflife',
@@ -37,10 +38,7 @@ setup(name='kagesenshi.gameoflife',
       namespace_packages=['kagesenshi'],
       include_package_data=True,
       zip_safe=False,
-      install_requires=[
-          'setuptools',
-          # -*- Extra requirements: -*-
-      ],
+      install_requires=requires,
       entry_points="""
       # -*- Entry points: -*-
       """,

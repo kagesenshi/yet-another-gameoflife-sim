@@ -18,8 +18,12 @@ def db(request):
 
     return session
 
-def configure(config, settings):
-    engine = engine_from_config(settings, prefix='sqlalchemy.')
-    config.registry.dbmaker = sessionmaker(bind=engine)
-    config.add_request_method(db, reify=True)
-    initialize_sql(engine)
+class SQLAlchemyConfigurator(object):
+    implements(IConfigurator)
+
+    def configure(self, config, settings):
+        engine = engine_from_config(settings, prefix='sqlalchemy.')
+        config.registry.dbmaker = sessionmaker(bind=engine)
+        config.add_request_method(db, reify=True)
+        initialize_sql(engine)
+        import pdb;pdb.set_trace()
