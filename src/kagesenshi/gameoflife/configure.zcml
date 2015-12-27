@@ -19,11 +19,6 @@
         name="kagesenshi.gameoflife"/>
 
     <utility
-        factory=".config.SQLAlchemyConfigurator"
-        provides="pysiphae.interfaces.IConfigurator"
-        name="kagesenshi.gameoflife:sqlalchemyconfigure"/>
-
-    <utility
         factory=".engine.GameOfLife"
         provides=".interfaces.IGameOfLifeEngine"/>
 
