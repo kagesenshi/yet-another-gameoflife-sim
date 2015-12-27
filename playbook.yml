@@ -24,17 +24,41 @@
       - name: chown
         command: chown -R mvalleychallenge:mvalleychallenge /opt/app
 
+      - stat: path=/opt/app/bin/buildout
+        register: cl
+
       - name: build app
         command: sudo -u mvalleychallenge ./build.sh
         args:
             chdir: /opt/app
             creates: /opt/app/bin/pserve
 
-      - name: install supervisord config
-        copy: src=supervisord.ini dest=/etc/supervisord.d/mvalleychallenge.ini
+      - stat: path=/opt/app/bin/develop
+        register: develop_script
+
+      - name: run buildout if already exists
+        command: sudo -u mvalleychallenge ./bin/buildout -vvv
+        when: cl.stat.exists
+        args:
+            chdir: /opt/app
+
+
+      - name: update sources
+        command: ./bin/develop up -f
+        when: develop_script.stat.exists
+        args:
+            chdir: /opt/app
+
+
+      - name: start mysql
+        service: name=mariadb state=restarted enabled=yes
 
       - name: create database
-        command: mysql -f /opt/app/sqlinit.sql
+        command: /opt/app/createdb.sh
+        args:
+            creates: /var/lib/mysql/gameoflife/
 
+      - name: install supervisord config
+        copy: src=supervisord.ini dest=/etc/supervisord.d/mvalleychallenge.ini
       - name: start supervisord on boot
         service: name=supervisord state=restarted enabled=yes
