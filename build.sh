@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 virtualenv venv
 ./venv/bin/python bootstrap-buildout.py
