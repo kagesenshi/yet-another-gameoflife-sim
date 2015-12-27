@@ -1,8 +1,0 @@
-.. contents::
-
-Introduction
-============
-
-Initializing
-
-
