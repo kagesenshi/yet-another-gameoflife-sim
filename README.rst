@@ -21,8 +21,8 @@ Example `inventoryfile`::
 
 Default username & password:
 
- * username: user
- * password: pass
+* username: user
+* password: pass
 
 System Details
 ================
@@ -40,7 +40,12 @@ the whole system.
 
 This application is an example application built on pysiphae which includes:
 
- * a gameoflife simulator
- * and a url shortener application
+* a gameoflife simulator
+* and a url shortener application
 
 for more info on pysiphae check out http://github.com/koslab/pysiphae
+
+More documentation?
+====================
+
+Use the source Luke .. 
