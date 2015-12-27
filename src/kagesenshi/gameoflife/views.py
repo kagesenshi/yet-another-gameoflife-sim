@@ -20,6 +20,13 @@ class Views(BaseViews):
 
     @view_config(route_name='gameoflife', renderer='templates/default.pt')
     def default_view(self):
+        # get latest sessionid
+        session = self.request.db
+        state = (session.query(State)
+                    .order_by(State.ts.desc())
+                    .first())
+        if state:
+            return {'sessionid': state.session}
         return { 'sessionid': 'default' }
 
     @view_config(route_name='golsession', renderer='json')
