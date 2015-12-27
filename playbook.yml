@@ -1,15 +1,26 @@
 - hosts: server
   remote_user: root
   tasks:
-      - name: install deps run 1
+      - name: install python deps
         yum: name=git,python-devel,python,python-virtualenv,python-setuptools
-      - name: install deps run 2
+      - name: install lib deps
         yum: name=cyrus-sasl-devel,openldap-devel,libxml2-devel,libxslt-devel
+      - name: install mysql deps
+        yum: name=mariadb,mariadb-server,mariadb-devel
+      - name: install npm
+        yum: name=npm
+      - name: install bower
+        command: npm install -g bower
+        args:
+            creates: /usr/bin/bower
+      - name: install supervisor
+        yum: name=supervisor
       - name: create user
         user: name=mvalleychallenge shell=/bin/bash
       - name: checkout app
         git: repo=https://github.com/kagesenshi/yet-another-gameoflife-sim.git
              dest=/opt/app
+             update=yes
       - name: chown
         command: chown -R mvalleychallenge:mvalleychallenge /opt/app
 
@@ -18,3 +29,12 @@
         args:
             chdir: /opt/app
             creates: /opt/app/bin/pserve
+
+      - name: install supervisord config
+        copy: src=supervisord.ini dest=/etc/supervisord.d/mvalleychallenge.ini
+
+      - name: create database
+        command: mysql -f /opt/app/sqlinit.sql
+
+      - name: start supervisord on boot
+        service: name=supervisord state=restarted enabled=yes
