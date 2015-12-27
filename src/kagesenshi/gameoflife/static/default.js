@@ -95,4 +95,11 @@ d3.json(jsonurl(), function (data) {
         }
         tracker = null;
     });
+
+    $('#new-session').click(function () {
+        var d = new Date();
+        $('#sessionid').val(d.toISOString());
+        step()
+    });
+
 });

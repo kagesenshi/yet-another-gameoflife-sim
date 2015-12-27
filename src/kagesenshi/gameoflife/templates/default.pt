@@ -15,14 +15,13 @@
             </div>
             <div class="col-lg-6">
                 <div class="panel">
-                    <label for="sessionid">Session</label>
-                    <input type="input" name="sessionid" placeholder="Session Name" value="${sessionid}"/>
+                    <input id="sessionid"
+                        type="hidden" name="sessionid" placeholder="Session Name" value="${sessionid}"/>
+                    <button id="new-session" class="btn btn-default">New Session</button>
                     <button id="step-button" class="btn btn-default">Step</button>
                     <button id="run-button" class="btn btn-default">Run</button>
                     <button id="stop-button" class="btn btn-default">Stop</button>
                 </div>
-
-
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="text-right">

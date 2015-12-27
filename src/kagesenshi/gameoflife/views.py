@@ -16,7 +16,7 @@ def flatten_grid(data):
 
 class Views(BaseViews):
 
-    @view_config(route_name='kagesenshi.gameoflife', renderer='templates/default.pt')
+    @view_config(route_name='gameoflife', renderer='templates/default.pt')
     def default_view(self):
         return { 'sessionid': 'default' }
 
