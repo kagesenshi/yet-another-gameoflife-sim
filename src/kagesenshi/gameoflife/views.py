@@ -40,4 +40,5 @@ class Views(BaseViews):
             gol.step()
             state.value = gol._data
             session.add(state)
+            return list(flatten_grid(gol._data))
         return list(flatten_grid(state.value))
