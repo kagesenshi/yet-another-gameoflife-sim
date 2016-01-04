@@ -3,6 +3,8 @@ var chart = dc.scatterPlot("#gol-grid")
 var liveCountDisplay = dc.numberDisplay('#live-count');
 var deadCountDisplay = dc.numberDisplay('#dead-count');
 
+pysiphae.startSpinner();
+
 function jsonurl () {
     return '/golsession/' + $('#sessionid').val() + '.json';
 };
@@ -72,11 +74,15 @@ d3.json(jsonurl(), function (data) {
 
     dc.renderAll();
 
+    pysiphae.stopSpinner();
+
     function step() {
+        pysiphae.startSpinner();
         d3.json(jsonurl() + '?step=1', function (data) {
             ndx.remove();
             ndx.add(data);
             dc.redrawAll();
+            pysiphae.stopSpinner();
         });
     };
 
